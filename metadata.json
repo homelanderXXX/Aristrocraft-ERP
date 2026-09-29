@@ -1,0 +1,6 @@
+{
+  "name": "AristroCraft",
+  "description": "AristroCraft - High-precision custom 3D printing studio, digital manufacturing, and materials catalog.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

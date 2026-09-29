@@ -1,0 +1,645 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, .print-format {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  color: #0F172A !important;
+  background-color: #FFFFFF !important;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+.invoice-sheet {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  padding: 24px 28px;
+}
+
+/* Accent Header Line */
+.top-brand-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #F59E0B 0%, #D97706 45%, #0F172A 100%);
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+/* Header Area */
+.header-grid {
+  display: table;
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.header-left {
+  display: table-cell;
+  width: 58%;
+  vertical-align: top;
+}
+
+.header-right {
+  display: table-cell;
+  width: 42%;
+  vertical-align: top;
+  text-align: right;
+}
+
+/* Clean Borderless Brand Logo */
+.brand-logo-clean {
+  height: 50px;
+  width: auto;
+  max-width: 230px;
+  object-fit: contain;
+  display: block;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  margin-bottom: 8px;
+}
+
+.company-tagline {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #D97706;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+
+.company-meta-text {
+  font-size: 10.5px;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+/* Invoice Title & Meta on Right */
+.doc-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.doc-number {
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #D97706;
+  margin-bottom: 8px;
+}
+
+.meta-item {
+  font-size: 11px;
+  margin-bottom: 2.5px;
+  color: #475569;
+}
+
+.meta-item strong {
+  color: #0F172A;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.status-paid {
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #86EFAC;
+}
+
+.status-draft {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+}
+
+.status-unpaid, .status-overdue {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FCA5A5;
+}
+
+/* Section Divider */
+.thin-divider {
+  height: 1px;
+  background: #E2E8F0;
+  margin: 18px 0;
+}
+
+/* Customer & Shipping Info (Clean Minimalist Cards) */
+.parties-grid {
+  display: table;
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.party-col {
+  display: table-cell;
+  width: 48%;
+  vertical-align: top;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.party-spacer {
+  display: table-cell;
+  width: 4%;
+}
+
+.section-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #EDF2F7;
+  padding-bottom: 4px;
+}
+
+.party-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+
+.party-line {
+  font-size: 11px;
+  color: #475569;
+  margin-bottom: 2.5px;
+  line-height: 1.4;
+}
+
+.party-line strong {
+  color: #1E293B;
+}
+
+/* Itemized Products Table */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.invoice-table th {
+  background: #F8FAFC;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 9px 12px;
+  border-top: 1px solid #CBD5E1;
+  border-bottom: 1px solid #CBD5E1;
+}
+
+.invoice-table td {
+  padding: 12px;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 11.5px;
+  vertical-align: top;
+  color: #1E293B;
+}
+
+.invoice-table tr:last-child td {
+  border-bottom: 1px solid #CBD5E1;
+}
+
+.col-sr { width: 5%; text-align: center; }
+.col-item { width: 52%; text-align: left; }
+.col-qty { width: 13%; text-align: center; }
+.col-rate { width: 15%; text-align: right; }
+.col-amt { width: 15%; text-align: right; }
+
+.item-main-title {
+  font-weight: 700;
+  color: #0F172A;
+  font-size: 12px;
+}
+
+.item-sub-desc {
+  font-size: 10.5px;
+  color: #64748B;
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.num-val {
+  font-family: 'Courier New', Consolas, monospace;
+  font-weight: 600;
+}
+
+/* Totals and Summary Block */
+.bottom-grid {
+  display: table;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.notes-cell {
+  display: table-cell;
+  width: 55%;
+  vertical-align: top;
+  padding-right: 20px;
+}
+
+.calc-cell {
+  display: table-cell;
+  width: 45%;
+  vertical-align: top;
+}
+
+.amount-words-card {
+  background: #FFFBEB;
+  border-left: 3px solid #F59E0B;
+  padding: 9px 12px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 12px;
+}
+
+.words-lbl {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #D97706;
+  letter-spacing: 0.6px;
+}
+
+.words-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1E293B;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.security-seal {
+  display: table;
+  width: 100%;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.seal-badge {
+  display: table-cell;
+  width: 76px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 900;
+  background: #0F172A;
+  color: #F59E0B;
+  padding: 6px 4px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.seal-text {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 10px;
+  font-size: 9.5px;
+  color: #64748B;
+  line-height: 1.35;
+}
+
+/* Calculation Table */
+.calc-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calc-table td {
+  padding: 5px 0;
+  font-size: 11.5px;
+}
+
+.calc-lbl {
+  color: #64748B;
+  font-weight: 500;
+  text-align: left;
+}
+
+.calc-val {
+  color: #0F172A;
+  font-weight: 600;
+  font-family: 'Courier New', Consolas, monospace;
+  text-align: right;
+}
+
+.row-grand-total td {
+  padding-top: 8px;
+  padding-bottom: 4px;
+  border-top: 2px solid #0F172A;
+}
+
+.row-grand-total .calc-lbl {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: 0.5px;
+}
+
+.row-grand-total .calc-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: #D97706;
+}
+
+.row-balance td {
+  padding-top: 4px;
+}
+
+.row-balance .calc-lbl {
+  color: #B91C1C;
+  font-weight: 700;
+}
+
+.row-balance .calc-val {
+  color: #B91C1C;
+  font-weight: 700;
+}
+
+/* Footer Section */
+.footer-row {
+  display: table;
+  width: 100%;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 16px;
+  margin-bottom: 14px;
+}
+
+.footer-left {
+  display: table-cell;
+  width: 65%;
+  vertical-align: top;
+  padding-right: 20px;
+}
+
+.footer-right {
+  display: table-cell;
+  width: 35%;
+  vertical-align: bottom;
+  text-align: center;
+  padding-top: 16px;
+}
+
+.terms-heading {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.terms-body {
+  font-size: 9.5px;
+  color: #64748B;
+  line-height: 1.45;
+  margin: 0;
+  padding-left: 12px;
+}
+
+.sign-underline {
+  border-bottom: 1px solid #0F172A;
+  width: 80%;
+  margin: 0 auto 6px auto;
+}
+
+.sign-text {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0F172A;
+  text-transform: uppercase;
+}
+
+.sign-company {
+  font-size: 8.5px;
+  color: #94A3B8;
+  letter-spacing: 0.5px;
+}
+
+.bottom-acknowledgement {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748B;
+  padding-top: 8px;
+  border-top: 1px dashed #E2E8F0;
+}
+
+@media print {
+  body { background: #FFFFFF !important; }
+  .invoice-sheet { padding: 0 !important; }
+}
+</style>
+
+<div class="invoice-sheet">
+  <!-- Accent Line -->
+  <div class="top-brand-bar"></div>
+
+  <!-- Header: Borderless Logo & Invoice Title -->
+  <div class="header-grid">
+    <div class="header-left">
+      <!-- 100% Clean Borderless Official Logo -->
+      {% if doc.company_logo %}
+        <img src="{{ doc.company_logo }}" alt="ARISTROCRAFT" class="brand-logo-clean" />
+      {% else %}
+        <img src="data:image/png;base64,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" alt="ARISTROCRAFT" class="brand-logo-clean" />
+      {% endif %}
+
+      <div class="company-tagline">Precision 3D Printing & Additive Manufacturing</div>
+      <div class="company-meta-text">
+        Aristro Craft Precision Labs Ltd. • Dhaka, Bangladesh<br/>
+        Web: <strong>aristrocraft.com</strong> • Email: <strong>support@aristrocraft.com</strong>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="doc-title">TAX INVOICE</div>
+      <div class="doc-number">{{ doc.name }}</div>
+      
+      <div class="meta-item">
+        Date: <strong>{{ frappe.utils.formatdate(doc.posting_date, "dd MMM yyyy") }}</strong>
+      </div>
+      <div class="meta-item">
+        Due Date: <strong>{{ frappe.utils.formatdate(doc.due_date, "dd MMM yyyy") if doc.due_date else frappe.utils.formatdate(doc.posting_date, "dd MMM yyyy") }}</strong>
+      </div>
+      {% if doc.po_no or doc.sales_order %}
+      <div class="meta-item">
+        Order Ref: <strong>{{ doc.po_no or doc.sales_order }}</strong>
+      </div>
+      {% endif %}
+      
+      <div>
+        <span class="status-badge status-{{ (doc.status or 'Paid')|lower|replace(' ', '-') }}">
+          {{ (doc.status or 'PAID')|upper }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="thin-divider"></div>
+
+  <!-- Billing & Dispatch Specifications -->
+  <div class="parties-grid">
+    <div class="party-col">
+      <div class="section-label">Billed & Shipped To</div>
+      <div class="party-name">{{ doc.customer_name or doc.customer or "Valued Customer" }}</div>
+      {% if doc.contact_phone or doc.contact_mobile or doc.phone %}
+      <div class="party-line">
+        <strong>Phone:</strong> {{ doc.contact_phone or doc.contact_mobile or doc.phone }}
+      </div>
+      {% endif %}
+      {% if doc.contact_email or doc.customer_email %}
+      <div class="party-line">
+        <strong>Email:</strong> {{ doc.contact_email or doc.customer_email }}
+      </div>
+      {% endif %}
+      <div class="party-line" style="margin-top: 4px;">
+        <strong>Delivery Address:</strong><br/>
+        {{ doc.shipping_address or doc.address_display or doc.customer_address or "Dhaka, Bangladesh" }}
+      </div>
+    </div>
+
+    <div class="party-spacer"></div>
+
+    <div class="party-col">
+      <div class="section-label">Order & Dispatch Specifications</div>
+      <div class="party-line">
+        <strong>Payment Method:</strong> {{ doc.payment_terms_template or "Cash on Delivery (COD) / bKash" }}
+      </div>
+      <div class="party-line">
+        <strong>Technology:</strong> High-Precision Multi-Material FDM / SLA
+      </div>
+      <div class="party-line">
+        <strong>Currency:</strong> BDT (৳ - Bangladesh Taka)
+      </div>
+      <div class="party-line" style="color: #16A34A; font-weight: 600; margin-top: 4px;">
+        ✓ 100% Inspected & Quality Certified Prior to Dispatch
+      </div>
+    </div>
+  </div>
+
+  <!-- Items Table -->
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th class="col-sr">#</th>
+        <th class="col-item">Item & Description</th>
+        <th class="col-qty">Quantity</th>
+        <th class="col-rate">Unit Rate</th>
+        <th class="col-amt">Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in doc.items %}
+      <tr>
+        <td class="col-sr num-val">{{ loop.index }}</td>
+        <td class="col-item">
+          <div class="item-main-title">{{ item.item_name or item.item_code }}</div>
+          {% if item.description and item.description != item.item_name %}
+          <div class="item-sub-desc">{{ item.description }}</div>
+          {% endif %}
+        </td>
+        <td class="col-qty num-val">{{ item.qty }} {{ item.uom or "Nos" }}</td>
+        <td class="col-rate num-val">{{ frappe.format_value(item.rate, doc.meta.get_field("grand_total")) }}</td>
+        <td class="col-amt num-val" style="font-weight: 700;">{{ frappe.format_value(item.amount, doc.meta.get_field("grand_total")) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Bottom Calculation and Notes -->
+  <div class="bottom-grid">
+    <div class="notes-cell">
+      <div class="amount-words-card">
+        <div class="words-lbl">Total in Words</div>
+        <div class="words-val">{{ doc.in_words or "Bangladeshi Taka Only" }}</div>
+      </div>
+
+      <div class="security-seal">
+        <div class="seal-badge">AUTHENTIC</div>
+        <div class="seal-text">
+          Certified digital tax invoice generated electronically via ARISTROCRAFT ERPNext Core.
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-cell">
+      <table class="calc-table">
+        <tr>
+          <td class="calc-lbl">Subtotal (Net):</td>
+          <td class="calc-val">{{ frappe.format_value(doc.net_total, doc.meta.get_field("net_total")) }}</td>
+        </tr>
+        {% if doc.total_taxes_and_charges and doc.total_taxes_and_charges > 0 %}
+        <tr>
+          <td class="calc-lbl">Delivery / Shipping:</td>
+          <td class="calc-val">{{ frappe.format_value(doc.total_taxes_and_charges, doc.meta.get_field("grand_total")) }}</td>
+        </tr>
+        {% endif %}
+        {% if doc.discount_amount and doc.discount_amount > 0 %}
+        <tr>
+          <td class="calc-lbl">Discount:</td>
+          <td class="calc-val" style="color: #16A34A;">-{{ frappe.format_value(doc.discount_amount, doc.meta.get_field("grand_total")) }}</td>
+        </tr>
+        {% endif %}
+        <tr class="row-grand-total">
+          <td class="calc-lbl">GRAND TOTAL:</td>
+          <td class="calc-val">{{ frappe.format_value(doc.grand_total, doc.meta.get_field("grand_total")) }}</td>
+        </tr>
+        {% if doc.outstanding_amount is defined and doc.outstanding_amount > 0 and doc.outstanding_amount != doc.grand_total %}
+        <tr class="row-balance">
+          <td class="calc-lbl">Balance Due:</td>
+          <td class="calc-val">{{ frappe.format_value(doc.outstanding_amount, doc.meta.get_field("grand_total")) }}</td>
+        </tr>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+
+  <!-- Terms & Signatory Footer -->
+  <div class="footer-row">
+    <div class="footer-left">
+      <div class="terms-heading">Terms & Quality Assurance</div>
+      <ul class="terms-body">
+        <li>Precision custom 3D prints undergo structural, layer-adhesion, and dimensional testing prior to dispatch.</li>
+        <li>For inquiries, order status, or technical support, contact <strong>support@aristrocraft.com</strong> quoting Invoice No: <strong>{{ doc.name }}</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="footer-right">
+      <div class="sign-underline"></div>
+      <div class="sign-text">Authorized Signature</div>
+      <div class="sign-company">ARISTROCRAFT 3D LABS</div>
+    </div>
+  </div>
+
+  <div class="bottom-acknowledgement">
+    Thank you for choosing ARISTROCRAFT — Crafting Your Vision into Reality!
+  </div>
+</div>
